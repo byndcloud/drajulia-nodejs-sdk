@@ -1,4 +1,5 @@
 import DocumentModels from './DocumentModels'
+import Document from './Document'
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -6,7 +7,6 @@ const axiosInstance = axios.create({
 })
 
 const documentModels = new DocumentModels(axiosInstance)
+const document = new Document(axiosInstance)
 
-console.log('Instanciou')
-
-export { documentModels }
+export { documentModels, document }
