@@ -7,7 +7,7 @@
     ]
   },
   "version": "1.0.0",
-  "description": "Dra Julia SDK tools to use with Node.js",
+  "description": "Dra Julia SDK tool to use with Node.js",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack",

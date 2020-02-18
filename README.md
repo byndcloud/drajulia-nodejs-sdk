@@ -1,16 +1,58 @@
-# Webpack Set Up For Writing Your Own JavaScript Library
+# Dra Julia SDK tool to use with Node.js
 
-## How to Make the Project Work
+## Install
+```
+npm i drajulia-nodejs-sdk
+```
 
-### 1.  Clone the repository
+## Usage
+```
+const drajulia = require('drajulia-nodejs-sdk')
 
-### 2.  npm install
+// get all document models
+drajulia.documentModels.list().then(models => {
+    console.log(models)
+})
 
-### 3. npm run build
+// generate pdf/docx files for an existing document
+drajulia.document.generateFiles(
+    "GnZ6RpdjSRx9aIVybD8x",
+    {
+		"responsavel": "Almir",
+		"Aluno": "José",
+		"cpf": "1029380912830",
+		"matricula": "10100192",
+		"quitacoes": [
+			{
+				"col0": "123123123123",
+				"col1": "123123123123",
+				"col2": "123123123123",
+				"col3": "123123123123"
+			},
+			{
+				"col0": "123123123123",
+				"col1": "123123123123",
+				"col2": "123123123123",
+				"col3": "123123123123"
+			}
+		]
+    },
+    {}
+).then(result => {
+    console.log(result)
+})
+```
 
-*There is a index.js generated inside dist directory. Add it as an external script to any of your projects.*
-*Any method can be accessed on $ in in your code after embedding the bundled file.*
+## Supported classes and methods
 
-**For example you can use $.capitalize in your javascript to use capitalize method**
-
-**The babelrc is used by jest for code transpilation.**# drajulia-nodejs-sdk
+### 1. documentModels
+    list
+### 2. document
+    generateFiles(docId, itemsForReplace, othersOptionContent)
+    
+    create(
+        creationToken,
+        newDocName,
+        parentModelId,
+        onFilesGeneratedCallbackUrl
+    )
