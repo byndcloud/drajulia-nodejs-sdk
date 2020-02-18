@@ -6,7 +6,7 @@ export default class DocumentModels {
   /**
    * Lists all document models
    */
-  static async list() {
-    return 'lista'
+  list() {
+    return this.axios.get('/public/documentmodels')
   }
 }

@@ -5,6 +5,8 @@ const axiosInstance = axios.create({
     baseURL: 'https://api-production-tyxxtz2vcq-uc.a.run.app/api/v1'
 })
 
-const documentModels = DocumentModels(axiosInstance)
+const documentModels = new DocumentModels(axiosInstance)
+
+console.log('Instanciou')
 
 export { documentModels }
