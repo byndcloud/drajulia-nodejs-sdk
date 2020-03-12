@@ -6,9 +6,25 @@ npm i drajulia-nodejs-sdk
 ```
 
 ## Usage
-```
-const drajulia = require('drajulia-nodejs-sdk')
 
+### Instantiation
+```
+const DrajuliaNodejsSdk = require('drajulia-nodejs-sdk')
+
+const drajulia = new DrajuliaNodejsSdk()
+```
+
+### For endpoints with authentication, just pass the auth token
+```
+const DrajuliaNodejsSdk = require('drajulia-nodejs-sdk')
+
+const myAuthToken = 'myauthtoken'
+
+const drajulia = new DrajuliaNodejsSdk(myAuthToken)
+```
+
+### Examples
+```
 // get all document models
 drajulia.documentModels.list().then(models => {
     console.log(models)
@@ -56,3 +72,12 @@ drajulia.document.generateFiles(
         parentModelId,
         onFilesGeneratedCallbackUrl
     )
+
+	// requires authentication
+	createAndGenerate({
+		newDocName,
+		modelId,
+		itemsForReplace,
+		othersOptionContent,
+		typesToGenerate
+	})

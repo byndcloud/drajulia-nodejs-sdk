@@ -1,12 +1,8 @@
-export default class DocumentModels {
-    constructor(axios) {
-        this.axios = axios
-    }
+import PublicDocumentModels from './PublicDocumentModels'
 
-    /**
-     * Lists all document models
-     */
-    list() {
-        return this.axios.get('/public/documentmodels')
+export default class DocumentModels extends PublicDocumentModels {
+    constructor(axios, authToken) {
+        super(axios)
+        this.authToken = authToken
     }
 }

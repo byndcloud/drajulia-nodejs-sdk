@@ -1,27 +1,26 @@
-export default class Document {
-    constructor(axios) {
-        this.axios = axios
+import PublicDocument from './PublicDocument'
+
+export default class Document extends PublicDocument {
+    constructor(axios, authToken) {
+        super(axios)
+        this.authToken = authToken
     }
 
-    generateFiles(docId, itemsForReplace, othersOptionContent) {
+    createAndGenerate({ newDocName, modelId, itemsForReplace, othersOptionContent, typesToGenerate }) {
+        const params = {
+            newDocName: newDocName,
+            modelId: modelId,
+            itemsForReplace: itemsForReplace,
+            othersOptionContent: othersOptionContent,
+            typesToGenerate: typesToGenerate
+        }
         return this.axios.post(
-            '/embedding/generatefiles',
+            '/document/',
+            params, 
             {
-                "docId": docId,
-                "itemsForReplace": itemsForReplace,
-                "othersOptionContent": othersOptionContent
-            }
-        )
-    }
-
-    create(creationToken, newDocName, parentModelId, onFilesGeneratedCallbackUrl) {
-        return this.axios.post(
-            '/embedding/createdoc',
-            {
-                creationToken: creationToken,
-                newDocName: newDocName,
-                parentModelId: parentModelId,
-                onFilesGeneratedCallbackUrl: onFilesGeneratedCallbackUrl
+                headers: {
+                    'Authorization': `Bearer ${this.authToken}`
+                }
             }
         )
     }
